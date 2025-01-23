@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "commandes",
+  "info": {
+    "singularName": "commande",
+    "pluralName": "commandes",
+    "displayName": "commande",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "totalPrice": {
+      "type": "decimal",
+      "required": false
+    },
+    "lines": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "users": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "commandes"
+    },
+    "orderstatus": {
+      "type": "enumeration",
+      "enum": [
+        "En attente de paiement",
+        "Payé"
+      ],
+      "default": "En attente de paiement",
+      "required": true
+    }
+  }
+}
